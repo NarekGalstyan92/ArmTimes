@@ -33,7 +33,7 @@ public class UserService {
 
     private final DateUtil dateUtil; // this is a component, it's a bean
     private final MailService mailService;
-    @Value("${task.management.images.folder}")
+    @Value("${armtimes.images.folder}")
     private String folderPath;
 
     public List<User> findAllUsers() {

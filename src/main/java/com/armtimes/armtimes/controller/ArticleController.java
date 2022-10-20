@@ -54,7 +54,7 @@ public class ArticleController {
         Page<Article> taskByUserRole = articleService.findArticleByUserRole(currentUser.getUser(),
                 PageRequest.of(currentPage - 1, pageSize));
 
-        modelMap.addAttribute("tasks", taskByUserRole);
+        modelMap.addAttribute("articles", taskByUserRole);
         int totalPages = taskByUserRole.getTotalPages();
         if (totalPages > 0) {
             List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
@@ -63,12 +63,12 @@ public class ArticleController {
             modelMap.addAttribute("pageNumbers", pageNumbers);
         }
         modelMap.addAttribute("users", userService.findAllUsers());
-        return "tasks";
+        return "articles";
     }
 
-    @PostMapping("/tasks/changeUser")
-    public String changeUser(@RequestParam("userId") int userId, @RequestParam("taskId") int taskId) {
+    @PostMapping("/articles/changeUser")
+    public String changeUser(@RequestParam("userId") int userId, @RequestParam("articleId") int taskId) {
         articleService.changeArticleUser(userId, taskId);
-        return "redirect:/tasks";
+        return "redirect:/articles";
     }
 }
